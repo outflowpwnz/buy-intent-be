@@ -1,0 +1,11 @@
+services:
+  # Сервис для PostgreSQL
+  postgres:
+    image: postgres:13
+    container_name: postgres
+    environment:
+      POSTGRES_USER: ${DATABASE_USER}      # Имя пользователя
+      POSTGRES_PASSWORD: ${DATABASE_PASSWORD}  # Пароль
+      POSTGRES_DB: ${DATABASE_NAME}   # Название базы данных
+    ports:
+      - "${DATABASE_PORT}:5432"  # Пробрасываем порт 5432 на локальную машину
