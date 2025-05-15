@@ -8,4 +8,18 @@ services:
       POSTGRES_PASSWORD: ${DATABASE_PASSWORD}  # Пароль
       POSTGRES_DB: ${DATABASE_NAME}   # Название базы данных
     ports:
-      - "${DATABASE_PORT}:5432"  # Пробрасываем порт 5432 на локальную машину
+      - "${DATABASE_DOCKER_PORT}:5432"  # Пробрасываем порт 5432 на локальную машину
+  app:
+      container_name: nest_app
+      build:
+        context: .
+        dockerfile: Dockerfile
+      environment:
+        DATABASE_USER: ${DATABASE_USER}
+        DATABASE_PASSWORD: ${DATABASE_PASSWORD}
+        DATABASE_NAME: ${DATABASE_NAME}
+        DATABASE_PORT: ${DATABASE_PORT}
+      ports:
+        - "${PORT}:${PORT}"
+      depends_on:
+        - postgres
