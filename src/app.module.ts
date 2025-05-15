@@ -5,7 +5,15 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { UserModule } from './user/user.module';
 import { AuthModule } from './auth/auth.module';
-import { TextModule } from './text/text.module';
+import { RequestModule } from './request/request.module';
+import { LinkModule } from './link/link.module';
+import { ContextModule } from './context/context.module';
+import { TelegramService } from './telegram/telegram.service';
+import { TelegramModule } from './telegram/telegram.module';
+import { MessageModule } from './message/message.module';
+import { AiModule } from './ai/ai.module';
+import { HttpModule } from '@nestjs/axios';
+
 
 @Module({
   imports: [
@@ -24,9 +32,15 @@ import { TextModule } from './text/text.module';
       }),
       inject: [ConfigService],
     }),
+    HttpModule,
     UserModule,
     AuthModule,
-    TextModule,
+    RequestModule,
+    LinkModule,
+    ContextModule,
+    TelegramModule,
+    MessageModule,
+    AiModule,
   ],
   controllers: [AppController],
   providers: [AppService],
